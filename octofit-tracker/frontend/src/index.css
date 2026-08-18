@@ -1,0 +1,35 @@
+:root {
+  --sans: Avenir Next, Corbel, Trebuchet MS, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  color: #223832;
+  background: #f8f4e8;
+  font: 16px/1.5 var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+code {
+  font-family: var(--mono);
+}
