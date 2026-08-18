@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const teamsEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/teams/`
+  : 'http://localhost:8000/api/teams/'
+
 function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState('')
@@ -11,7 +16,7 @@ function Teams() {
 
     async function loadTeams() {
       try {
-        const records = await fetchCollection('teams')
+        const records = await fetchCollection('teams', teamsEndpoint)
         if (!ignore) {
           setTeams(records)
         }

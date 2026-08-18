@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const usersEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/'
+
 function Users() {
   const [users, setUsers] = useState([])
   const [error, setError] = useState('')
@@ -11,7 +16,7 @@ function Users() {
 
     async function loadUsers() {
       try {
-        const records = await fetchCollection('users')
+        const records = await fetchCollection('users', usersEndpoint)
         if (!ignore) {
           setUsers(records)
         }

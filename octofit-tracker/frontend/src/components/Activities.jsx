@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+const activitiesEndpoint = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/activities/`
+  : 'http://localhost:8000/api/activities/'
+
 function Activities() {
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
@@ -11,7 +16,7 @@ function Activities() {
 
     async function loadActivities() {
       try {
-        const records = await fetchCollection('activities')
+        const records = await fetchCollection('activities', activitiesEndpoint)
         if (!ignore) {
           setActivities(records)
         }

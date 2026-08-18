@@ -36,8 +36,8 @@ function normalizeRecords(payload, resourceName) {
   return []
 }
 
-export async function fetchCollection(resourceName) {
-  const response = await fetch(`${apiBaseUrl}/${resourceName}/`)
+export async function fetchCollection(resourceName, endpoint = `${apiBaseUrl}/${resourceName}/`) {
+  const response = await fetch(endpoint)
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`)
